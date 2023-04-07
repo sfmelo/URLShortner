@@ -8,10 +8,6 @@ MEMCACHE_PORT = "5001"
 
 app = Flask(__name__)
 
-class URLHashInUseException(Exception):
-    "Raised when a URL is already in the cache or there is a collison"
-    pass
-
 class URLCache:
     def __init__(self):
         self.url_cache = Client(f"{MEMCACHE_HOST}:{MEMCACHE_PORT}")
