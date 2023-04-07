@@ -11,11 +11,10 @@ app = Flask(__name__)
 class URLCache:
     def __init__(self):
         self.url_cache = Client(f"{MEMCACHE_HOST}:{MEMCACHE_PORT}")
-        self._h = hashlib.sha256()
     
     def register(self, url):
-        self._h.update(url.encode())
-        shortened = self._h.hexdigest()[:URL_SIZE]
+        shortened = hashlib.sha256(url.encode()).hexdigest()[:URL_SIZE]
+        print(url)
         self.url_cache.add(shortened, url)
         return shortened
     
@@ -46,7 +45,7 @@ def get_full_url(url):
         return custom_response(404, "error", "url is not valid")
     
     # remove encoded tags
-    full_url = full_url[2:len(full_url)]
+    full_url = full_url[2:len(full_url)-1]
     return custom_response(302, "url", full_url)
 
 if __name__=="__main__":
