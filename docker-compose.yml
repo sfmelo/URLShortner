@@ -1,0 +1,6 @@
+services:
+  db:
+    container_name: my_memcache
+    image: memcached:latest
+    ports:
+      - 11211:11211
