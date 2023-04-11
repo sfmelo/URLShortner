@@ -4,3 +4,17 @@ services:
     image: memcached:latest
     ports:
       - 11211:11211
+    networks:
+      - urlshortner_network
+  
+  api:
+    container_name: url-shortner-api
+    image: url-shortner-api
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - urlshortner_network
+
+networks:
+  urlshortner_network:

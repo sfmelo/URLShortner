@@ -4,7 +4,7 @@ from flask import Flask, request, abort, jsonify
 from pymemcache.client.base import Client
 
 URL_SIZE = 7
-MEMCACHE_HOST = "localhost"
+MEMCACHE_HOST = "db"
 MEMCACHE_PORT = "11211"
 DEBUG=os.getenv("DEBUG", False)
 
